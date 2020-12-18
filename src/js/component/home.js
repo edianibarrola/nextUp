@@ -8,12 +8,28 @@ export class Home extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			randomStudent: "",
 			studentsArray: [],
 			studentInput: ""
 		};
 	}
-	addToListEnter = () => {
-		if (studentInput) {
+	pickRandomStudent = e => {
+		let randomNumber = Math.floor(
+			Math.random(this.state.studentsArray.length + 1)
+		);
+		this.setState({
+			randomStudent: this.state.studentsArray[randomNumber].student
+		});
+	};
+	addToListEnter = e => {
+		let input = this.state.studentInput;
+		if (e.keyCode == 13 && input) {
+			let newUser = { student: input };
+			let newStudentsArray = this.state.studentsArray.concat(newUser);
+			this.setState({
+				studentsArray: newStudentsArray,
+				studentInput: ""
+			});
 		}
 	};
 	render() {
@@ -30,6 +46,7 @@ export class Home extends React.Component {
 							placeholder="Student name"
 							aria-label="Student name"
 							aria-describedby="basic-addon2"
+							value={this.state.studentInput}
 							onChange={event =>
 								this.setState({
 									studentInput: event.target.value
@@ -40,17 +57,13 @@ export class Home extends React.Component {
 						<div className="input-group-append">
 							<button
 								className="btn btn-outline-secondary"
-								type="button">
-								Add to list
-							</button>
-							<button
-								className="btn btn-outline-secondary"
-								type="button">
+								type="button"
+								onClick={e => this.pickRandomStudent(e)}>
 								Pick a student
 							</button>
 						</div>
 					</div>
-
+					<h1>{this.state.randomStudent}</h1>
 					<a
 						className="fixed-bottom"
 						href="http://www.twitter.com/ediansmells">
