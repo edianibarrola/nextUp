@@ -67,12 +67,25 @@ export class Home extends React.Component {
 						</div>
 					</div>
 					<h1> {this.state.randomStudent}</h1>
-					<a
-						className="fixed-bottom"
-						href="http://www.twitter.com/ediansmells">
-						{" "}
-						Made by EdianSmells{" "}
-					</a>
+
+					<div className="fixed-bottom">
+						<a href="http://www.edianibarrola.com">
+							{" "}
+							Made by EdianSmells
+						</a>
+						<a href="http://www.twitter.com/ediansmells">
+							{" "}
+							<i className="fab fa-twitter" />{" "}
+						</a>
+						<a href="http://github.com/edianibarrola">
+							{" "}
+							<i className="fab fa-github-alt" />{" "}
+						</a>
+						<a href="http://www.instagram.com/the_garden_of_edian/">
+							{" "}
+							<i className="fab fa-instagram" />{" "}
+						</a>
+					</div>
 				</div>
 			</div>
 		);
