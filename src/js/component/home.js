@@ -15,10 +15,13 @@ export class Home extends React.Component {
 	}
 	pickRandomStudent = e => {
 		let randomNumber = Math.floor(
-			Math.random(this.state.studentsArray.length + 1)
+			Math.random() * this.state.studentsArray.length
 		);
 		this.setState({
-			randomStudent: this.state.studentsArray[randomNumber].student
+			randomStudent:
+				"Hey " +
+				this.state.studentsArray[randomNumber].student +
+				" ! You're up next!"
 		});
 	};
 	addToListEnter = e => {
@@ -63,7 +66,7 @@ export class Home extends React.Component {
 							</button>
 						</div>
 					</div>
-					<h1>{this.state.randomStudent}</h1>
+					<h1> {this.state.randomStudent}</h1>
 					<a
 						className="fixed-bottom"
 						href="http://www.twitter.com/ediansmells">
