@@ -8,6 +8,8 @@ export class Home extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			lastStudent: "",
+
 			randomStudent: "",
 			studentsArray: [],
 			studentInput: ""
@@ -17,6 +19,18 @@ export class Home extends React.Component {
 		let randomNumber = Math.floor(
 			Math.random() * this.state.studentsArray.length
 		);
+		let newRandomStudent = this.state.studentsArray[randomNumber];
+		if (
+			newRandomStudent.student != this.state.lastStudent &&
+			newRandomStudent.chosen != true
+		) {
+			this.setState({
+				randomStudent: newRandomStudent.student,
+
+				lastStudent: this.randomStudent
+			});
+		}
+
 		this.setState({
 			randomStudent:
 				"Hey " +
@@ -27,7 +41,7 @@ export class Home extends React.Component {
 	addToListEnter = e => {
 		let input = this.state.studentInput;
 		if (e.keyCode == 13 && input) {
-			let newUser = { student: input };
+			let newUser = { student: input, chosen: false };
 			let newStudentsArray = this.state.studentsArray.concat(newUser);
 			this.setState({
 				studentsArray: newStudentsArray,
