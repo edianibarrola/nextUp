@@ -19,15 +19,12 @@ export class Home extends React.Component {
 		let randomNumber = Math.floor(
 			Math.random() * this.state.studentsArray.length
 		);
-		let newRandomStudent = this.state.studentsArray[randomNumber];
-		if (
-			newRandomStudent.student != this.state.lastStudent &&
-			newRandomStudent.chosen != true
-		) {
+		var newRandomStudent = this.state.studentsArray[randomNumber];
+		if (this.state.randomStudent != this.state.lastStudent) {
 			this.setState({
 				randomStudent: newRandomStudent.student,
 
-				lastStudent: this.randomStudent
+				lastStudent: this.state.randomStudent
 			});
 		}
 
